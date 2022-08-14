@@ -14,11 +14,17 @@ services:
       # - PEERPORT=peerport #optional
       # - HOST_WHITELIST=dnsname list #optional
     volumes:
-      - /config:/config
-      - /downloads:/downloads
-      - /watch:/watch
+      - ./config:/config
+      - ./downloads:/downloads
+      - ./watch:/watch
     ports:
       - 9091:9091
       - 51413:51413
       - 51413:51413/udp
     restart: unless-stopped
+  app:
+    build: ./gdrive
+    volumes:
+      - ./gdrive:/code
+      - ./downloads:/downloads
+    tty: true
